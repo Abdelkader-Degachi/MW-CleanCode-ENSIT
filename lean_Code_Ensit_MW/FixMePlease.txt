@@ -1,49 +1,54 @@
 //Q1: With this function we want to check if a1 is higher than a2 and less than a3 (No meaningful variables)
-function imafunction(a1: Number, a2: Number, a3: Number): boolean {
+function isValueInRange(value: Number, minValue: Number, maxValue: Number): boolean {
   return a2 <= a1 && a1 <= a3;
 }
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
-type DtaRcrd102 = {
-  xvcnxjv: String;
-  hfdsjlfh: String;
-  ghdkfkkk: number;
+type Student = {
+  firstName: string;
+  lastName: string;
+  age: number;
 }
 
 //Q3: What we should call our function that return User?
-getUserData();
 getUser();
-getUserInformation();
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-isGradeBelowMax(grade, 20)
+function isGradeBelowMax(grade: number, maxGrade: number):boolean{
+  return grade<maxGrade;
+}
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
-Student s = new Student();
-Grade g = new Grade();
-Professor p = new Professor();
+Student student1 = new Student();
+Grade grade1 = new Grade();
+Professor professor1 = new Professor();
 
 //Q6: Don't you think we are overdoing it???
-Type Student {
-studentFirstName: String;
-studentLastName: String;
-StudentId: Number;
+type Student {
+studentFirstName: string;
+studentLastName: string;
+studentId: number;
 }
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
-Type Student {
-firstName: String;
-lastName: String;
-Id: Number;
-gender: String;
+enum Gender {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+}
+
+type Student {
+firstName: string;
+lastName: string;
+Id: number;
+gender: Gender;
 }
 
 function displayName(student: Student){
 switch (student.gender) {
-    case "Male":
+    case Gender.MALE:
         console.log("Mr." + student.firstName + " " + student.lastName);
         break;
-    case "Female":
+    case Gender.FEMALE:
         console.log("Mrs." + student.firstName + " " + student.lastName);
         break;
     Default:
@@ -52,22 +57,40 @@ switch (student.gender) {
 }
 
 //Q8: Is it good idea to display all these arguments in one line like this?
-displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
+no in this way the signature is more readable
+displayUserDetails(
+  firstName: String,
+  lastName: String,
+  id: Number,
+  department:
+  String,
+  university: String
+  ) {
 // Some logic happens here
 }
 
 //Q9: Is it good idea to give all these arguments to one function?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
 }
+no, actually we can use an object like this:
+type UserDetails = {
+  firstName: string;
+  lastName: string;
+  id: number;
+  department: string;
+  university: string;
+};
+
+function displayUserDetails(user: UserDetails) {
+}
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
 function evaluateStudents(studentsList) {
-  let passedStudents = []; // This will be filled with list of passed students
-  const MINIMUM_GRADE_TO_PASS = 10; // We set because to pass you need 10 at least
-  // Here we will go through all the students and check our conditions and adjust students and passed list depending on that
+  let passedStudents = []; 
+  const MINIMUM_GRADE_TO_PASS = 10; 
   studentsList.forEach((student) => {
     if (student.score >= MINIMUM_GRADE_TO_PASS) {
-      passedStudents.push(student); // Here we add students
+      passedStudents.push(student); 
     } else {
       if (student.failedBefore) {
         console.log(
@@ -78,6 +101,34 @@ function evaluateStudents(studentsList) {
       } else {
           student.failedBefore = true; // This to set failedBefore to true for the students who failed for the first time
       }
+    }
+  });
+
+  return passedStudents;
+}
+we have to refractor into small functions each one with a specific task
+function evaluateStudents(studentsList) {
+  const passedStudents = [];
+  const MINIMUM_GRADE_TO_PASS = 10;
+
+  function isStudentPassing(student) {
+    return student.score >= MINIMUM_GRADE_TO_PASS;
+  }
+
+  function handleSuspendedStudent(student) {
+    if (student.failedBefore) {
+      const salutation = student.gender === Gender.MALE ? 'Mr.' : 'Mrs.';
+      console.log(`Sorry ${salutation} ${student.name}, you are suspended.`);
+    } else {
+      student.failedBefore = true;
+    }
+  }
+
+  studentsList.forEach((student) => {
+    if (isStudentPassing(student)) {
+      passedStudents.push(student);
+    } else {
+      handleSuspendedStudent(student);
     }
   });
 

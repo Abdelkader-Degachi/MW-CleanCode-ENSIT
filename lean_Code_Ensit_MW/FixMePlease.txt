@@ -3,6 +3,13 @@ function imafunction(a1: Number, a2: Number, a3: Number): boolean {
   return a2 <= a1 && a1 <= a3;
 }
 
+
+//Response
+function isNumberWithinRange(value: Number, min: Number, max: Number): boolean {
+  return min <= value && value <= max;
+}
+
+
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
 type DtaRcrd102 = {
   xvcnxjv: String;
@@ -10,18 +17,41 @@ type DtaRcrd102 = {
   ghdkfkkk: number;
 }
 
+//Response
+type StudentRecord = {
+  firstName: string;
+  lastName: string;
+  age: number;
+}
+
+
 //Q3: What we should call our function that return User?
 getUserData();
 getUser();
 getUserInformation();
 
+//Response
+getUser();
+
+
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
 isGradeBelowMax(grade, 20)
+
+//Response
+function isGradeBelowMax(grade, maxGrade) {
+  return grade > maxGrade;
+}
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
 Student s = new Student();
 Grade g = new Grade();
 Professor p = new Professor();
+
+//Response
+
+student = new Student();
+grade = new Grade();
+professor = new Professor();
 
 //Q6: Don't you think we are overdoing it???
 Type Student {
@@ -29,6 +59,14 @@ studentFirstName: String;
 studentLastName: String;
 StudentId: Number;
 }
+
+//Response
+type Student {
+  firstName: string;
+  lastName: string;
+  id: number;
+}
+
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
 Type Student {
@@ -51,14 +89,57 @@ switch (student.gender) {
     }
 }
 
+//Response 
+enum Gender {
+  Male = "Male",
+  Female = "Female",
+}
+
+type Student {
+  firstName: string;
+  lastName: string;
+  id: number;
+  gender: Gender; // Use the Gender enum
+}
+
+function displayName(student: Student) {
+  switch (student.gender) {
+    case Gender.Male:
+      console.log("Mr." + student.firstName + " " + student.lastName);
+      break;
+    case Gender.Female:
+      console.log("Mrs." + student.firstName + " " + student.lastName);
+      break;
+    default:
+      console.log("ERROR 404");
+  }
+}
+
+
 //Q8: Is it good idea to display all these arguments in one line like this?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
 // Some logic happens here
 }
 
+//Response
+displayUserDetails(
+  firstName: string,
+  lastName: string,
+  id: number,
+  department: string,
+  university: string
+) {
+  // Some logic happens here
+}
+
+
 //Q9: Is it good idea to give all these arguments to one function?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
 }
+//Response
+Refactoring the function to accept an object parameter instead of multiple individual arguments is a good practice for several reasons. 
+It helps enhance code clarity and maintainability by addressing concerns related to function signatures and cohesion.
+
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
 function evaluateStudents(studentsList) {
@@ -83,5 +164,39 @@ function evaluateStudents(studentsList) {
 
   return passedStudents;
 }
+//Response 
+function evaluateStudents(studentsList) {
+  const passedStudents = [];
+  const MINIMUM_GRADE_TO_PASS = 10;
+
+  studentsList.forEach((student) => {
+    if (isPassing(student)) {
+      passedStudents.push(student);
+    } else {
+      handleFailingStudent(student);
+    }
+  });
+
+  return passedStudents;
+}
+
+function isPassing(student) {
+  return student.score >= MINIMUM_GRADE_TO_PASS;
+}
+
+function handleFailingStudent(student) {
+  if (student.failedBefore) {
+    const genderPrefix = student.gender === Gender.Male ? 'Mr.' : 'Mrs.';
+    console.log(`Sorry ${genderPrefix} ${student.name}, you are suspended.`);
+  } else {
+    student.failedBefore = true;
+  }
+}
+
+
+
+
+
+
 
 

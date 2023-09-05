@@ -1,83 +1,113 @@
 //Q1: With this function we want to check if a1 is higher than a2 and less than a3 (No meaningful variables)
-function imafunction(a1: Number, a2: Number, a3: Number): boolean {
+function isValueInInterval(a1: Number, a2: Number, a3: Number): boolean {
   return a2 <= a1 && a1 <= a3;
 }
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
-type DtaRcrd102 = {
-  xvcnxjv: String;
-  hfdsjlfh: String;
-  ghdkfkkk: number;
-}
+type Student = {
+  firstName: String;
+  lastName: String;
+  age: number;
+};
 
-//Q3: What we should call our function that return User?
+//Q3: What we should call our function that return User?==> getUser(); ✓✓ 
 getUserData();
-getUser();
+getUser(); ✓✓
 getUserInformation();
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-isGradeBelowMax(grade, 20)
+isGradeBelowMax(grade: Number,max:number){
+  return grade < max ; 
+}
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
-Student s = new Student();
-Grade g = new Grade();
-Professor p = new Professor();
+Student student = new Student();
+Grade grade = new Grade();
+Professor professor = new Professor();
 
 //Q6: Don't you think we are overdoing it???
 Type Student {
-studentFirstName: String;
-studentLastName: String;
-StudentId: Number;
+firstName: String;
+lastName: String;
+id: number;
 }
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
-Type Student {
-firstName: String;
-lastName: String;
-Id: Number;
-gender: String;
+enum Gender {
+    Male = "Male",
+    Female = "Female",
 }
-
+Type Student {
+  firstName: String;
+  lastName: String;
+  Id: Number;
+  gender: Gender;
+}
 function displayName(student: Student){
-switch (student.gender) {
-    case "Male":
+  switch (student.gender) {
+    case gender.Male:
         console.log("Mr." + student.firstName + " " + student.lastName);
         break;
-    case "Female":
+    case gender.Female:
         console.log("Mrs." + student.firstName + " " + student.lastName);
         break;
     Default:
         console.log("ERROR 404");
-    }
+  }
 }
 
 //Q8: Is it good idea to display all these arguments in one line like this?
-displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
-// Some logic happens here
-}
+displayUserDetails(
+  firstName: String, 
+  lastName: String, 
+  id: Number, 
+  department: String, 
+  university: String
+){
+    // Some logic happens here
+ }
+===>Readability of code is essential, and consolidating multiple media onto a single line 
+can make it difficult to understand functional signatures.
 
 //Q9: Is it good idea to give all these arguments to one function?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
 }
+===> No, it's not a good idea to give all these arguments to one function:
+displayUserDetails(
+  student: Student, 
+  department: String, 
+  university: String
+  ){
+  
+  }
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
+const MINIMUM_GRADE_TO_PASS = 10;
+
+function displayMessage(student) {
+  const genderPrefix = student.gender === Gender.Male ? "Mr." : "Mrs.";
+  console.log(`Sorry ${genderPrefix} ${student.name}, you are suspended.`);
+}
+
+function hasPassed(student) {
+  return student.score >= MINIMUM_GRADE_TO_PASS;
+}
+
+function handleSuspension(student){
+  if (student.failedBefore) {
+    displayMessage(student);
+  } else {
+    student.failedBefore = true;
+  }
+}
+
 function evaluateStudents(studentsList) {
-  let passedStudents = []; // This will be filled with list of passed students
-  const MINIMUM_GRADE_TO_PASS = 10; // We set because to pass you need 10 at least
-  // Here we will go through all the students and check our conditions and adjust students and passed list depending on that
+  let passedStudents = [];
   studentsList.forEach((student) => {
-    if (student.score >= MINIMUM_GRADE_TO_PASS) {
-      passedStudents.push(student); // Here we add students
+    if (hasPassed(student.score)) {
+      passedStudents.push(student);
     } else {
-      if (student.failedBefore) {
-        console.log(
-          student.gender === Gender.Male
-            ? `Sorry Mr. ${student.name}, you are suspended.` // This message for male students.
-            : `Sorry Mrs. ${student.name}, you are suspended.` // This message for female students.
-        );
-      } else {
-          student.failedBefore = true; // This to set failedBefore to true for the students who failed for the first time
-      }
+      handleSuspension(student)
     }
   });
 

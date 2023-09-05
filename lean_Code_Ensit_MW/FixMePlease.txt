@@ -77,7 +77,7 @@ displayUserDetails(id: Number){ // the id should be enough
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
 function evaluateStudents(studentsList) {
-  let passedStudents = []; 
+  let passedStudents = [];   
   const MINIMUM_GRADE_TO_PASS = 10; 
   studentsList.forEach((student) => {
     if (student.score >= MINIMUM_GRADE_TO_PASS) {

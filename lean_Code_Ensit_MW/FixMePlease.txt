@@ -1,27 +1,30 @@
 //Q1: With this function we want to check if a1 is higher than a2 and less than a3 (No meaningful variables)
-function imafunction(a1: Number, a2: Number, a3: Number): boolean {
-  return a2 <= a1 && a1 <= a3;
+function CheckNumberRange(CurrentValue: Number, LowValue: Number, HighValue: Number): boolean {
+  return LowValue <= CurrentValue && CurrentValue <= HighValue;
 }
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
-type DtaRcrd102 = {
-  xvcnxjv: String;
-  hfdsjlfh: String;
-  ghdkfkkk: number;
+type Student = {
+  FirstName: String;
+  LastName: String;
+  StudentId: number;
 }
 
 //Q3: What we should call our function that return User?
 getUserData();
-getUser();
-getUserInformation();
+
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
 isGradeBelowMax(grade, 20)
 
+function isGradeBelowMax(grade: number, maxGrade: number): boolean {
+  return grade <= maxGrade;
+}
+
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
-Student s = new Student();
-Grade g = new Grade();
-Professor p = new Professor();
+Student student = new Student();
+Grade grade = new Grade();
+Professor professor = new Professor();
 
 //Q6: Don't you think we are overdoing it???
 Type Student {
@@ -36,6 +39,18 @@ firstName: String;
 lastName: String;
 Id: Number;
 gender: String;
+}
+
+enum Gender {
+  Male = "Male",
+  Female = "Female",
+}
+
+Type Student {
+firstName: String;
+lastName: String;
+Id: Number;
+gender: Gender;
 }
 
 function displayName(student: Student){
@@ -56,8 +71,29 @@ displayUserDetails(firstName: String, lastName: String, id: Number, department: 
 // Some logic happens here
 }
 
+function displayUserDetails(
+  firstName: String,
+  lastName: String,
+  id: Number,
+  department: String,
+  university: String
+) {
+  // Some logic happens here
+}
+
 //Q9: Is it good idea to give all these arguments to one function?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
+}
+
+Type Student {
+firstName: String;
+lastName: String;
+Id: Number;
+Department: String,
+University: String
+}
+
+displayUserDetails(student: Student){
 }
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
@@ -84,4 +120,5 @@ function evaluateStudents(studentsList) {
   return passedStudents;
 }
 
-
+If a function is too long, it can be hard to understand.So it should be decomposed into smaller functions, each with a clear purpose, instead 
+of having too comment and explain every line.

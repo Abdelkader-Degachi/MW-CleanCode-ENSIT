@@ -1,41 +1,50 @@
 //Q1: With this function we want to check if a1 is higher than a2 and less than a3 (No meaningful variables)
-function imafunction(a1: Number, a2: Number, a3: Number): boolean {
-  return a2 <= a1 && a1 <= a3;
+function compare(middleNum: Number, lowerBound: Number, higherBound: Number): boolean {
+  return lowerBound <= middleNum && middleNum <= higherBound;
 }
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
-type DtaRcrd102 = {
-  xvcnxjv: String;
-  hfdsjlfh: String;
-  ghdkfkkk: number;
+type student = {
+  firstName: String;
+  lastName: String;
+  age: number;
 }
 
 //Q3: What we should call our function that return User?
 getUserData();
-getUser();
+getUser(); (********this one*******)
 getUserInformation();
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-isGradeBelowMax(grade, 20)
+const gradeMaxTunisia = 20
+const gradeMaxUSA = 100 
+isGradeBelowMax(grade, gradeMaxTunisia)
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
-Student s = new Student();
-Grade g = new Grade();
-Professor p = new Professor();
+Student student = new Student();
+Grade studentGrade = new Grade();
+Professor professor = new Professor();
 
 //Q6: Don't you think we are overdoing it???
 Type Student {
 studentFirstName: String;
 studentLastName: String;
 StudentId: Number;
-}
+} 
+No, firstName and lastName can refer to the student's parents ..
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
+
+enum Gender {
+  MALE = 'male',
+  FEMALE = 'female',
+  OTHER = 'other',
+}
 Type Student {
 firstName: String;
 lastName: String;
 Id: Number;
-gender: String;
+Gender: String;
 }
 
 function displayName(student: Student){
@@ -52,36 +61,31 @@ switch (student.gender) {
 }
 
 //Q8: Is it good idea to display all these arguments in one line like this?
-displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
+displayUserDetails(
+			       firstName: String,
+			       lastName: String,
+			       id: Number,
+			       department: String,
+			       university: String)
+{
 // Some logic happens here
 }
 
 //Q9: Is it good idea to give all these arguments to one function?
-displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
+displayUserDetails(id: Number){ // the id should be enough
 }
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
 function evaluateStudents(studentsList) {
-  let passedStudents = []; // This will be filled with list of passed students
-  const MINIMUM_GRADE_TO_PASS = 10; // We set because to pass you need 10 at least
-  // Here we will go through all the students and check our conditions and adjust students and passed list depending on that
+  let passedStudents = []; 
+  const MINIMUM_GRADE_TO_PASS = 10; 
   studentsList.forEach((student) => {
     if (student.score >= MINIMUM_GRADE_TO_PASS) {
-      passedStudents.push(student); // Here we add students
-    } else {
-      if (student.failedBefore) {
-        console.log(
-          student.gender === Gender.Male
-            ? `Sorry Mr. ${student.name}, you are suspended.` // This message for male students.
-            : `Sorry Mrs. ${student.name}, you are suspended.` // This message for female students.
-        );
-      } else {
-          student.failedBefore = true; // This to set failedBefore to true for the students who failed for the first time
-      }
-    }
+      passedStudents.push(student); 
+    }}
   });
 
-  return passedStudents;
+  return passedStudents; //the function should do one and only one clear task 
 }
 
 

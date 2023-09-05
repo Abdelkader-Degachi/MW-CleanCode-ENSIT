@@ -3,6 +3,11 @@ function imafunction(a1: Number, a2: Number, a3: Number): boolean {
   return a2 <= a1 && a1 <= a3;
 }
 
+Answer : 
+function high_less(a1,a2,a3:Number): boolean {
+  return a2 <= a1 && a1 <= a3;
+}
+
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
 type DtaRcrd102 = {
   xvcnxjv: String;
@@ -10,18 +15,41 @@ type DtaRcrd102 = {
   ghdkfkkk: number;
 }
 
+Answer : 
+type Student = {
+  firstname: String;
+  lastname: String;
+  id: number;
+}
+
 //Q3: What we should call our function that return User?
 getUserData();
 getUser();
 getUserInformation();
 
+Answer : getUser();
+
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
 isGradeBelowMax(grade, 20)
+
+Answer :
+function isGradeBelowMax(grade, country_grade)
+{
+	if (grade <= country_grade)
+	return true ;
+	else
+	return false ;
+}
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
 Student s = new Student();
 Grade g = new Grade();
 Professor p = new Professor();
+
+Answer :
+Student student_1 = new Student();
+Grade grade_1 = new Grade();
+Professor professor_1 = new Professor();
 
 //Q6: Don't you think we are overdoing it???
 Type Student {
@@ -29,6 +57,8 @@ studentFirstName: String;
 studentLastName: String;
 StudentId: Number;
 }
+
+Answer : It's similar than the 3rd question
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
 Type Student {
@@ -50,14 +80,37 @@ switch (student.gender) {
         console.log("ERROR 404");
     }
 }
+Answer : 
+
+function displayName(student: Student){
+if (student.gender == "Male")
+console.log("Mr." + student.firstName + " " + student.lastName);
+else if (student.gender == "Female")
+console.log("Mrs." + student.firstName + " " + student.lastName);
+else
+console.log("ERROR 404");
+}
+
 
 //Q8: Is it good idea to display all these arguments in one line like this?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
 // Some logic happens here
 }
 
+Answer :
+function displayUserDetails (user : User)
+{
+console.log (user.firstName + " " + user.lastName + " " + user.id + " " + user.department + " " + user.university);
+}
+
 //Q9: Is it good idea to give all these arguments to one function?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
+}
+
+Answer : No we can give the user in the argument 
+function displayUserDetails (user : User)
+{
+console.log (user.firstName + " " + user.lastName + " " + user.id + " " + user.department + " " + user.university);
 }
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
@@ -84,4 +137,32 @@ function evaluateStudents(studentsList) {
   return passedStudents;
 }
 
+Answer : 
+function SucceessStudents(studentsList) {
+let passedStudents = []; 
+const MINIMUM_GRADE_TO_PASS = 10; 
+studentsList.forEach((student) => {
+    if (student.score >= MINIMUM_GRADE_TO_PASS) {
+    passedStudents.push(student); 
+    }
+}
+return passedStudents;
+}
 
+function SuspendedStudents(studentsList) {
+studentsList.forEach((student) => {
+if (student.score < MINIMUM_GRADE_TO_PASS && student.failedBefore) {
+console.log(
+student.gender === Gender.Male
+            ? `Sorry Mr. ${student.name}, you are suspended.` 
+            : `Sorry Mrs. ${student.name}, you are suspended.` 
+        );
+}
+}
+
+function FailedStudents(studentsList) {
+studentsList.forEach((student) => {
+if (student.score < MINIMUM_GRADE_TO_PASS && student.failedBefore = false) {
+student.failedBefore = true;
+}
+}

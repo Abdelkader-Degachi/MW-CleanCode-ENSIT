@@ -75,22 +75,27 @@ displayUserDetails(firstName: String, lastName: String, id: Number, department: 
 }
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
+function failedStudent(student){
+  return (student.score < MINIMUM_GRADE_TO_PASS && student.failedBefore )
+}
+
+function messageFailure(student){
+  return (student.gender === Gender.Male? `Sorry Mr. ${student.name}, you are suspended.`: `Sorry Mrs. ${student.name}, you are suspended.`)
+}
+
 function evaluateStudents(studentsList) {
-  let passedStudents = []; // This will be filled with list of passed students
-  const MINIMUM_GRADE_TO_PASS = 10; // We set because to pass you need 10 at least
-  // Here we will go through all the students and check our conditions and adjust students and passed list depending on that
+  let passedStudents = [];
+  const MINIMUM_GRADE_TO_PASS = 10;
   studentsList.forEach((student) => {
     if (student.score >= MINIMUM_GRADE_TO_PASS) {
-      passedStudents.push(student); // Here we add students
+      passedStudents.push(student);
     } else {
-      if (student.failedBefore) {
+      if (failedStudent(student)) {
         console.log(
-          student.gender === Gender.Male
-            ? `Sorry Mr. ${student.name}, you are suspended.` // This message for male students.
-            : `Sorry Mrs. ${student.name}, you are suspended.` // This message for female students.
+          messageFailure(student)
         );
       } else {
-          student.failedBefore = true; // This to set failedBefore to true for the students who failed for the first time
+          student.failedBefore = true;
       }
     }
   });

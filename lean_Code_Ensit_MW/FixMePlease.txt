@@ -3,6 +3,12 @@ function imafunction(a1: Number, a2: Number, a3: Number): boolean {
   return a2 <= a1 && a1 <= a3;
 }
 
+//Answer:
+function isBetween(ourNumber: number, min: number, max: number): boolean {
+  return ourNumber > min && ourNumber < max;
+}
+----------------------------------------------------------------------------------------------------------------
+
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
 type DtaRcrd102 = {
   xvcnxjv: String;
@@ -10,18 +16,40 @@ type DtaRcrd102 = {
   ghdkfkkk: number;
 }
 
+//Answer:
+type: Student ={
+  firstName: string;
+  lastName: string;
+  age: number ;
+}
+----------------------------------------------------------------------------------------------------------------
+
 //Q3: What we should call our function that return User?
 getUserData();
 getUser();
 getUserInformation();
 
+//Answer:
+getUser();
+----------------------------------------------------------------------------------------------------------------
+
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
 isGradeBelowMax(grade, 20)
+//Answer:
+MAX_ACCEPTED_GRADE=20;
+isGradeBelowMax(grade, MAX_ACCEPTED_GRADE);
+----------------------------------------------------------------------------------------------------------------
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
 Student s = new Student();
 Grade g = new Grade();
 Professor p = new Professor();
+
+//Answer:
+student = new Student()
+grade = new Grade()
+professor = new Professor()
+----------------------------------------------------------------------------------------------------------------
 
 //Q6: Don't you think we are overdoing it???
 Type Student {
@@ -29,6 +57,15 @@ studentFirstName: String;
 studentLastName: String;
 StudentId: Number;
 }
+
+//Answer:
+Type Student {
+firstName: String;
+lastName: String;
+id: Number;
+}
+
+----------------------------------------------------------------------------------------------------------------
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
 Type Student {

@@ -1,6 +1,6 @@
 //Q1: With this function we want to check if a1 is higher than a2 and less than a3 (No meaningful variables)
-function Betweenfunction(a1: Number, a2: Number, a3: Number): boolean {
-  return a2 <= a1 && a1 <= a3;
+function Betweenfunction(CurrentNumber: Number, min: Number, max: Number): boolean {
+  return min <= CurrentNumber && aCurrentNumber <= max;
 }
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
@@ -12,25 +12,13 @@ type Student = {
 
 
 //Q3: What we should call our function that return User?
-
 getUser();
 
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-
 function isGradeBelowMax(grade, maxGrade) {
   return grade < maxGrade;
 }
-studentGrade = 40; 
-maxGradeTunisia = 20;
-maxGradeisGradeBelowMax(studentGrade, maxGradeForTunisia) = 100;
-
-const isBelowMaxForTunisia = isGradeBelowMax(studentGrade, maxGradeForTunisia);
-const isBelowMaxForUSA = isGradeBelowMax(studentGrade, maxGradeForUSA);
-
-console.log(`Is the student yearly grade is acceptable for  Tunisia? ${isGradeBelowMax(studentGrade, maxGradeTunisia)}`);
-console.log(`Is the student yearly grade is acceptable for  the USA? ${isGradeBelowMax(studentGrade, maxGradeUSA)}`);
-
 
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
@@ -52,7 +40,6 @@ enum Gender {
   
 }
 
-
 Type Student {
 firstName: String;
 lastName: String;
@@ -73,7 +60,19 @@ switch (student.gender) {
     }
 }
 
-//Q8: Is it good idea to display all these arguments in one line like this? No
+//Q8: Is it good idea to display all these arguments in one line like this? 
+displayUserDetails(
+  firstName: String,
+  lastName: String, 
+  id: Number, 
+  department: String, 
+  university: String
+  )
+{
+  // Some logic happens here
+}
+
+//Q9: Is it good idea to give all these arguments to one function? 
 Type Student {
   firstName: String;
   lastName: String;
@@ -82,36 +81,43 @@ Type Student {
   university: String;
 }
 
-displayUserDetails(Student){
+displayUserDetails(student:Student){
 // Some logic happens here
 }
 
-//Q9: Is it good idea to give all these arguments to one function? No
-displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
+
+//Q10: Who wants to have a function that do multiple things with multiple comments? 
+
+function isPassing(student, minGrade) {
+  return student.score >= minGrade;
 }
 
-//Q10: Who wants to have a function that do multiple things with multiple comments? No
-function evaluateStudents(studentsList) {
-  let listpassedStudents = []; 
-  const MINIMUM_GRADE_TO_PASS = 10;
 
-  studentsList.forEach((student) => {
-    if (student.score >= MINIMUM_GRADE_TO_PASS) {
-      listpassedStudents.push(student); 
-    } else {
-      if (student.failedBefore) {
+function handleSuspension(student) {
+  if (student.failedBefore) {
         console.log(
           student.gender === Gender.Male
             ? `Sorry Mr. ${student.name}, you are suspended.` 
             : `Sorry Mrs. ${student.name}, you are suspended.` 
         );
-      } else {
+  }else {
           student.failedBefore = true; 
       }
+}
+
+function evaluateStudents(studentsList) {
+  const MINIMUM_GRADE_TO_PASS = 10;
+  let listPassedStudents = [];
+
+  studentsList.forEach((student) => {
+    if (isPassing(student, MINIMUM_GRADE_TO_PASS)) {
+      listPassedStudents.push(student);
+    } else {
+      handleSuspension(student);
     }
   });
 
-  return listpassedStudents;
+  return listPassedStudents;
 }
 
 

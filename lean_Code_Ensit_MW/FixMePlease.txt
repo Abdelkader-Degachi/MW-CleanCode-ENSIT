@@ -1,29 +1,29 @@
 //Q1: With this function we want to check if a1 is higher than a2 and less than a3 (No meaningful variables)
-function imafunction(a1: Number, a2: Number, a3: Number): boolean {
+function Compair(a1: Number, a2: Number, a3: Number): boolean {
   return a2 <= a1 && a1 <= a3;
 }
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
-type DtaRcrd102 = {
-  xvcnxjv: String;
-  hfdsjlfh: String;
-  ghdkfkkk: number;
+type Student = {
+  firstName: String;
+  lastName: String;
+  ID: number;
 }
 
 //Q3: What we should call our function that return User?
-getUserData();
 getUser();
-getUserInformation();
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-isGradeBelowMax(grade, 20)
+isGradeAcceptable(grade, 20)
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
+// I didn't understand the question
 Student s = new Student();
 Grade g = new Grade();
 Professor p = new Professor();
 
 //Q6: Don't you think we are overdoing it???
+// I didn't understand the question
 Type Student {
 studentFirstName: String;
 studentLastName: String;
@@ -35,15 +35,15 @@ Type Student {
 firstName: String;
 lastName: String;
 Id: Number;
-gender: String;
+gender: Number;
 }
 
 function displayName(student: Student){
 switch (student.gender) {
-    case "Male":
+    case 1:
         console.log("Mr." + student.firstName + " " + student.lastName);
         break;
-    case "Female":
+    case 2:
         console.log("Mrs." + student.firstName + " " + student.lastName);
         break;
     Default:
@@ -51,32 +51,50 @@ switch (student.gender) {
     }
 }
 
-//Q8: Is it good idea to display all these arguments in one line like this?
+//Q8: Is it good idea to display all these arguments in one line like this? 
+// NO
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
 // Some logic happens here
 }
 
-//Q9: Is it good idea to give all these arguments to one function?
+//Q9: Is it good idea to give all these arguments to one function? 
+// NO
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
 }
 
+
+// for Q8, Q9 are we supposed to fix it? I didn't really understand it tbh :(
+
+
+
 //Q10: Who wants to have a function that do multiple things with multiple comments?
+function displaySuspensionMessage(student) {
+  console.log(
+    student.gender === Gender.Male
+      ? `Sorry Mr. ${student.name}, you are suspended.` // This message for male students.
+      : `Sorry Mrs. ${student.name}, you are suspended.` // This message for female students.
+  );
+}
+
+function isPassed(student, passedStudents){
+  return student.score >= MINIMUM_GRADE_TO_PASS;
+}
+
+function setFailedBefore(student) {
+  student.failedBefore = true;
+}
+
 function evaluateStudents(studentsList) {
-  let passedStudents = []; // This will be filled with list of passed students
-  const MINIMUM_GRADE_TO_PASS = 10; // We set because to pass you need 10 at least
-  // Here we will go through all the students and check our conditions and adjust students and passed list depending on that
+  let passedStudents = [];
+  const MINIMUM_GRADE_TO_PASS = 10;
+  
   studentsList.forEach((student) => {
-    if (student.score >= MINIMUM_GRADE_TO_PASS) {
-      passedStudents.push(student); // Here we add students
+    if ( isPassed(student) ) {
+      passedStudents.push(student);
     } else {
-      if (student.failedBefore) {
-        console.log(
-          student.gender === Gender.Male
-            ? `Sorry Mr. ${student.name}, you are suspended.` // This message for male students.
-            : `Sorry Mrs. ${student.name}, you are suspended.` // This message for female students.
-        );
-      } else {
-          student.failedBefore = true; // This to set failedBefore to true for the students who failed for the first time
+      if ( !student.failedBefore ) {
+        setFailedBefore(student)
+        displaySuspensionMessage(student);
       }
     }
   });

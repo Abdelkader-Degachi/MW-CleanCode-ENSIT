@@ -168,4 +168,26 @@ function evaluateStudents(studentsList) {
   return passedStudents;
 }
 
+//Answer: 
+
+const MINIMUM_GRADE_TO_PASS = 10; // got thsi out of the function for better clarity
+
+function evaluateStudents(studentsList) {
+  const passedStudents = [];
+  
+  studentsList.forEach((student) => {
+    if (student.score >= MINIMUM_GRADE_TO_PASS) {
+      passedStudents.push(student);
+    } else {
+      if (!student.failedBefore) {
+        student.failedBefore = true;
+      }
+      const prefix = student.gender === Gender.Male ? 'Mr.' : 'Mrs.';
+      console.log(`Sorry ${prefix} ${student.name}, you are suspended.`);
+    }
+  });
+
+  return passedStudents;
+}
+
 

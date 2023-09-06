@@ -31,13 +31,16 @@ getUserInformation();
 
 //Answer:
 getUser();
+
 ----------------------------------------------------------------------------------------------------------------
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
 isGradeBelowMax(grade, 20)
+
 //Answer:
 MAX_ACCEPTED_GRADE=20;
 isGradeBelowMax(grade, MAX_ACCEPTED_GRADE);
+
 ----------------------------------------------------------------------------------------------------------------
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
@@ -87,6 +90,34 @@ switch (student.gender) {
         console.log("ERROR 404");
     }
 }
+
+//Answer :
+enum Gender {
+  Male = "Male",
+  Female = "Female",
+}
+
+type Student {
+  firstName: String;
+  lastName: String;
+  Id: Number;
+  gender: Gender; 
+}
+
+function displayName(student: Student){
+  switch (student.gender) {
+    case Gender.Male:
+      console.log("Mr." + student.firstName + " " + student.lastName);
+      break;
+    case Gender.Female:
+      console.log("Mrs." + student.firstName + " " + student.lastName);
+      break;
+    default: // (BTW lowercase 'default' here)
+      console.log("ERROR 404");
+  }
+}
+
+----------------------------------------------------------------------------------------------------------------
 
 //Q8: Is it good idea to display all these arguments in one line like this?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){

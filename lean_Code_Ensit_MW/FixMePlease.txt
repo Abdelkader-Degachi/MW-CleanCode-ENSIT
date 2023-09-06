@@ -124,9 +124,21 @@ displayUserDetails(firstName: String, lastName: String, id: Number, department: 
 // Some logic happens here
 }
 
+//Answer: 
+displayUserDetails(
+  firstName: String,
+  lastName: String,
+  id: Number,
+  department: String,
+  university: String
+)
+
+----------------------------------------------------------------------------------------------------------------
+
 //Q9: Is it good idea to give all these arguments to one function?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
 }
+----------------------------------------------------------------------------------------------------------------
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
 function evaluateStudents(studentsList) {

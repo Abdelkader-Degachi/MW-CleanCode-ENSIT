@@ -1,41 +1,45 @@
 //Q1: With this function we want to check if a1 is higher than a2 and less than a3 (No meaningful variables)
-function imafunction(a1: Number, a2: Number, a3: Number): boolean {
-  return a2 <= a1 && a1 <= a3;
+function CompareNumbers(comparedVal: Number, minVal: Number, maxval: Number): boolean {
+  return minVal <= comparedVal && comparedVal <= maxVal;
 }
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
 type DtaRcrd102 = {
-  xvcnxjv: String;
-  hfdsjlfh: String;
-  ghdkfkkk: number;
+  firstName: String;
+  lastName: String;
+  phoneNumber: number;
 }
 
 //Q3: What we should call our function that return User?
-getUserData();
-getUser();
-getUserInformation();
+getUser(); 
+
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-isGradeBelowMax(grade, 20)
+
+isGradeBelowMax(grade, maxGrade)
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
-Student s = new Student();
-Grade g = new Grade();
-Professor p = new Professor();
+Student student = new Student();
+Grade grade = new Grade();
+Professor professor = new Professor();
 
 //Q6: Don't you think we are overdoing it???
 Type Student {
-studentFirstName: String;
-studentLastName: String;
-StudentId: Number;
+FirstName: String;
+LastName: String;
+Id: Number;
 }
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
+enum Gender {
+  male,
+  female
+}
 Type Student {
 firstName: String;
 lastName: String;
 Id: Number;
-gender: String;
+gender: Gender
 }
 
 function displayName(student: Student){
@@ -53,7 +57,7 @@ switch (student.gender) {
 
 //Q8: Is it good idea to display all these arguments in one line like this?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
-// Some logic happens here
+console.log("First name : " +firstName +"\n lastName : " + lastName + "\n department : " + department + "\n university : " + university)
 }
 
 //Q9: Is it good idea to give all these arguments to one function?
@@ -61,12 +65,15 @@ displayUserDetails(firstName: String, lastName: String, id: Number, department: 
 }
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?
+function isBelowMin(score : number , min : number) {
+  return (score>=min);
+}
 function evaluateStudents(studentsList) {
   let passedStudents = []; // This will be filled with list of passed students
   const MINIMUM_GRADE_TO_PASS = 10; // We set because to pass you need 10 at least
   // Here we will go through all the students and check our conditions and adjust students and passed list depending on that
   studentsList.forEach((student) => {
-    if (student.score >= MINIMUM_GRADE_TO_PASS) {
+    if (isBelowMin (student.score ,MINIMUM_GRADE_TO_PASS)) {
       passedStudents.push(student); // Here we add students
     } else {
       if (student.failedBefore) {

@@ -11,31 +11,33 @@ type DtaRcrd102 = {
 }
 
 //Q3: What we should call our function that return User?
-getUserData();
 getUser();
-getUserInformation();
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-isGradeBelowMax(grade, 20)
+isGradeBelowMax(grade)
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
-Student s = new Student();
-Grade g = new Grade();
-Professor p = new Professor();
+Student student = new Student();
+Grade grade = new Grade();
+Professor professor = new Professor();
 
 //Q6: Don't you think we are overdoing it???
 Type Student {
-studentFirstName: String;
-studentLastName: String;
-StudentId: Number;
+FirstName: String;
+LastName: String;
+Id: Number;
 }
 
-//Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
+//Q7: What we can do to avoid giving unappropriate gender value? (Hint enum)
+enum GENDER{
+MALE,
+FEMALE
+}
 Type Student {
 firstName: String;
 lastName: String;
 Id: Number;
-gender: String;
+gender: GENDER;
 }
 
 function displayName(student: Student){
@@ -52,12 +54,19 @@ switch (student.gender) {
 }
 
 //Q8: Is it good idea to display all these arguments in one line like this?
-displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
-// Some logic happens here
+displayUserDetails(
+firstName: String,
+lastName: String,
+id: Number,
+department: String,
+university: String
+)
+{
 }
 
 //Q9: Is it good idea to give all these arguments to one function?
-displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
+displayUserDetails(id: Number,university: String){
+//we can instead create an object called user that has as attributes id and university then we can pass the user as argument to this function.
 }
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?

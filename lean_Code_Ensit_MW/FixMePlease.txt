@@ -138,6 +138,10 @@ displayUserDetails(
 //Q9: Is it good idea to give all these arguments to one function?
 displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
 }
+
+//Answer:
+It might be better to have a User CLASS or type that has all these attributes (firstName, lastName...)
+and like that all we need as an Argument is an instance of the User class
 ----------------------------------------------------------------------------------------------------------------
 
 //Q10: Who wants to have a function that do multiple things with multiple comments?

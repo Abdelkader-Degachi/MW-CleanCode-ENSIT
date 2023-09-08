@@ -5,22 +5,24 @@ function isValueInTheRange(value: Number, InferiorBorn: Number, SuperiorBorn: Nu
 
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
-type student = {
-  studentName: String;
-  studentClass: String;
+type Student = {
+  studentName: string;
+  studentClass: string;
   studentId: number;
 }
 
 
+
 //Q3: What we should call our function that return User?
-//Answer : The best practice of the getters and setters is to put the verb+the class in the camel case so it's getUser();
-getUserData();
-getUser(); <-
-getUserInformation();
+
+getUser(); 
+
 
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-isGradeBelowMax(grade)
+function isGradeWithinRange(grade: number, maxGrade: number): boolean {
+  return grade >= 0 && grade <= maxGrade;
+}
 
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
@@ -30,48 +32,45 @@ Professor professor = new Professor();
 
 
 //Q6: Don't you think we are overdoing it???
-//Answer: For me no, because later in the code is better to find StudentId that references to a student than an id that can refers to any object
-//example we have a student named yasmin so if we don't difference in the attribute, we can have conflict between the person and the flower
+ no, because later in the code is better to find StudentId that references to a student than an id that can refers to any object
+
 Type Student {
-    studentFirstName: String;
-    studentLastName: String;
-    StudentId: Number;
+    studentFirstName: string;
+    studentLastName: string;
+    StudentId: number;
 }
 
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
 
-Enum Sexe {
-    "Male",
-    "Female"
+enum Gender {
+    Male,
+    Female
 }
 
-Type Student {
-    firstName: String;
-    lastName: String;
-    id: Number;
-    //gender: Boolean;
-    gender: Sexe;
+type Student {
+    firstName: string;
+    lastName: string;
+    id: number;
+    gender: Gender;
 }
 
-
-function displayStudentName(student: Student){
+function displayStudentName(student: Student) {
     switch (student.gender) {
-        case "Male":
+        case Gender.Male:
             console.log("Mr." + student.firstName + " " + student.lastName);
             break;
-        case "Female":
+        case Gender.Female:
             console.log("Mrs." + student.firstName + " " + student.lastName);
             break;
-        Default:
+        default:
             console.log("ERROR 404");
-        }
+    }
 }
-
 
 
 //Q8: Is it good idea to display all these arguments in one line like this?
-//Answer: no it's hard to detect all of them
+ no it's hard to detect all of them
 displayUserDetails(student: Student, department: String, university: String){
 // Some logic happens here
 }
@@ -79,7 +78,7 @@ displayUserDetails(student: Student, department: String, university: String){
 
 
 //Q9: Is it good idea to give all these arguments to one function?
-//Answer: I guess it's the same previous question
+ no it's hard to detect all of them
 displayUserDetails(student: Student, department: String, university: String){
 }
 

@@ -1,72 +1,72 @@
 //Q1: With this function we want to check if a1 is higher than a2 and less than a3 (No meaningful variables)
-function isValueInTheRange(value: Number, InferiorBorn: Number, SuperiorBorn: Number): boolean {
-  return InferiorBorn <= value && value <= SuperiorBorn;
+function isValueInTheRange(value: Number, min: Number, max: Number): boolean {
+  return min <= value && value <= max;
 }
 
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
 type student = {
-  studentName: String;
-  studentClass: String;
-  studentId: number;
+  FirstName: String;
+  LastName: String;
+  CIN: number;
 }
 
 
 //Q3: What we should call our function that return User?
 //Answer : The best practice of the getters and setters is to put the verb+the class in the camel case so it's getUser();
-getUserData();
-getUser(); <-
-getUserInformation();
+
+getUser(); 
+
 
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-isGradeBelowMax(grade)
+isGradeBelowMax(grade,MaxGrade)
 
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
-Student student = new Student();
-Grade grade = new Grade();
-Professor professor = new Professor();
+Student  = new Student();
+Grade  = new Grade();
+Professor  = new Professor();
 
 
 //Q6: Don't you think we are overdoing it???
 //Answer: For me no, because later in the code is better to find StudentId that references to a student than an id that can refers to any object
 //example we have a student named yasmin so if we don't difference in the attribute, we can have conflict between the person and the flower
 Type Student {
-    studentFirstName: String;
-    studentLastName: String;
-    StudentId: Number;
+    FirstName: String;
+    LastName: String;
+    Id: Number;
 }
 
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
 
-Enum Sexe {
-    "Male",
-    "Female"
+enum Gender {
+  Male = "Male",
+  Female = "Female",
+  
 }
 
-Type Student {
-    firstName: String;
-    lastName: String;
-    id: Number;
-    //gender: Boolean;
-    gender: Sexe;
+type Student = {
+  firstName: string;
+  lastName: string;
+  Id: number;
+  gender: Gender; 
+};
+
+function displayName(student: Student) {
+  switch (student.gender) {
+    case Gender.Male:
+      console.log("Mr. " + student.firstName + " " + student.lastName);
+      break;
+    case Gender.Female:
+      console.log("Mrs. " + student.firstName + " " + student.lastName);
+      break;
+    default:
+      console.log("ERROR 404");
+  }
 }
 
-
-function displayStudentName(student: Student){
-    switch (student.gender) {
-        case "Male":
-            console.log("Mr." + student.firstName + " " + student.lastName);
-            break;
-        case "Female":
-            console.log("Mrs." + student.firstName + " " + student.lastName);
-            break;
-        Default:
-            console.log("ERROR 404");
-        }
-}
 
 
 
@@ -77,10 +77,38 @@ displayUserDetails(student: Student, department: String, university: String){
 }
 
 
+displayUserDetails(
+  student: Student,
+  department: string,
+  university: string
+) {
+  // Some logic happens here
+}
+
+
 
 //Q9: Is it good idea to give all these arguments to one function?
 //Answer: I guess it's the same previous question
 displayUserDetails(student: Student, department: String, university: String){
+}
+
+function getStudentDetails(student: Student) {
+  ....
+}
+
+function getDepartmentInfo(department: string) {
+  ....
+}
+
+function getUniversityInfo(university: string) {
+  ......
+}
+
+function displayUserDetails(student: Student, department: string, university: string) {
+  const studentDetails = getStudentDetails(student);
+  const departmentInfo = getDepartmentInfo(department);
+  const universityInfo = getUniversityInfo(university);
+
 }
 
 

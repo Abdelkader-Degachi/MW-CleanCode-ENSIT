@@ -1,27 +1,30 @@
 //Q1: With this function we want to check if a1 is higher than a2 and less than a3 (No meaningful variables)
-function imafunction(a1: Number, a2: Number, a3: Number): boolean {
+function compare(a1: Number, a2: Number, a3: Number): boolean {
   return a2 <= a1 && a1 <= a3;
 }
 
 //Q2: We want to have student type with some information. (If it's not pronounceable how you will say it)
-type DtaRcrd102 = {
-  xvcnxjv: String;
-  hfdsjlfh: String;
-  ghdkfkkk: number;
+type student = {
+  firstName: String;
+  lastName: String;
+  age: number;
 }
 
 //Q3: What we should call our function that return User?
 getUserData();
 getUser();
 getUserInformation();
+//We shouls call this function "getUser();"
 
 //Q4: We want to check if that our student yearly grade is acceptable for any country Education System (in Tunisia <20, in USA 100)
-isGradeBelowMax(grade, 20)
+isGradeBelowMax(grade: Number,max:Number){
+  return grade < max ; 
+}
 
 //Q5: I know you got the idea of variable names but I want it to be clear for anyone around the world.
-Student s = new Student();
-Grade g = new Grade();
-Professor p = new Professor();
+Student student = new Student();
+Grade grade = new Grade();
+Professor professor = new Professor();
 
 //Q6: Don't you think we are overdoing it???
 Type Student {
@@ -29,13 +32,24 @@ studentFirstName: String;
 studentLastName: String;
 StudentId: Number;
 }
+//yes i think so ,
+Type Student {
+FirstName: String;
+LastName: String;
+Id: Number;
+}
 
 //Q7: What we can do to avoid giving unappropriat gender value? (Hint enum)
+enum Gender{
+male="Male"
+female="Female"
+}
+
 Type Student {
 firstName: String;
 lastName: String;
 Id: Number;
-gender: String;
+gender: Gender;
 }
 
 function displayName(student: Student){
@@ -52,36 +66,53 @@ switch (student.gender) {
 }
 
 //Q8: Is it good idea to display all these arguments in one line like this?
-displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
+
+//No , it's not , i think this is better 
+displayUserDetails(firstName: String, lastName: String, id: Number,
+ department: String, university: String){
 // Some logic happens here
 }
 
 //Q9: Is it good idea to give all these arguments to one function?
-displayUserDetails(firstName: String, lastName: String, id: Number, department: String, university: String){
+displayUserDetails(Student : student, department: String, university: String){
 }
 
+
+
 //Q10: Who wants to have a function that do multiple things with multiple comments?
+
+function hasPassed(student, minimumGradeToPass) {
+  return student.score >= minimumGrade;
+}
+
+
+function suspendStudent(student) {
+  if (student.gender === Gender.Male) {
+    console.log(`Sorry Mr. ${student.name}, you are suspended.`);
+  } else {
+    console.log(`Sorry Mrs. ${student.name}, you are suspended.`);
+  }
+}
+
+
 function evaluateStudents(studentsList) {
-  let passedStudents = []; // This will be filled with list of passed students
-  const MINIMUM_GRADE_TO_PASS = 10; // We set because to pass you need 10 at least
-  // Here we will go through all the students and check our conditions and adjust students and passed list depending on that
+  const MINIMUM_GRADE_TO_PASS = 10;
+  const passedStudents = [];
+
   studentsList.forEach((student) => {
-    if (student.score >= MINIMUM_GRADE_TO_PASS) {
-      passedStudents.push(student); // Here we add students
+    if (hasPassed(student, MINIMUM_GRADE_TO_PASS)) {
+      passedStudents.push(student);
     } else {
       if (student.failedBefore) {
-        console.log(
-          student.gender === Gender.Male
-            ? `Sorry Mr. ${student.name}, you are suspended.` // This message for male students.
-            : `Sorry Mrs. ${student.name}, you are suspended.` // This message for female students.
-        );
+        suspendStudent(student);
       } else {
-          student.failedBefore = true; // This to set failedBefore to true for the students who failed for the first time
+        student.failedBefore = true;
       }
     }
   });
 
   return passedStudents;
 }
+
 
 
